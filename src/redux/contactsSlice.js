@@ -42,7 +42,7 @@ const slice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(
+        isAllOf(
           fetchContacts.rejected,
           addContact.rejected,
           deleteContact.rejected

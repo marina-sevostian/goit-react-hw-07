@@ -2,11 +2,12 @@ import { useId, useState } from 'react';
 import s from './ContactForm.module.css';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsOps';
 
 const ContactForm = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [isValidated, setIsValidated] = useState(false);
   const nameFildId = useId();
   const numberFildId = useId();
   const initialValues = {
@@ -29,14 +30,18 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(
-      addContact({
-        id: nanoid(),
-        name: values.name,
-        number: values.number,
-      })
-    );
-    actions.resetForm();
+    setIsClicked(true);
+    dispatch(addContact(values)).then(() => {
+      setTimeout(() => {
+        setIsClicked(false);
+        setIsValidated(true);
+        actions.resetForm();
+        setTimeout(() => {
+          setIsValidated(false);
+        }, 2000);
+      }),
+        2000;
+    });
   };
 
   return (

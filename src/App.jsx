@@ -7,6 +7,7 @@ import { MdContactPhone } from 'react-icons/md';
 import { useEffect } from 'react';
 import { fetchContacts } from './redux/contactsOps';
 import { selectError, selectLoading } from './redux/selectors';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
         </h1>
         <ContactForm />
         <SearchBox />
+        {isLoading && !isError && <Loader />}
         <ContactList />
       </div>
     </>

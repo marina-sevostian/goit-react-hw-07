@@ -82,3 +82,32 @@
   box-shadow: 0 1px 10px 0 darkgreen;
   color: wheat;
 }
+
+.onclic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid wheat;
+  border-top-color: #006400;
+  animation: rotating 2s linear infinite;
+  font-size: 0;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.validate {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: wheat;
+  background-color: #006400;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

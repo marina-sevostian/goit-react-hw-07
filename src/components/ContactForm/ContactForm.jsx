@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsOps';
+import { GiCheckMark } from 'react-icons/gi';
 
 const ContactForm = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -85,8 +86,20 @@ const ContactForm = () => {
               component="span"
             />
           </div>
-          <button className={s.formBtn} type="submit">
-            Add contact
+          <button
+            className={`${s.formBtn} ${isClicked ? s.onclic : ''} ${
+              isValidated ? s.validate : ''
+            }`}
+            type="submit"
+            disabled={isClicked || isValidated}
+          >
+            {isClicked ? (
+              ''
+            ) : isValidated ? (
+              <GiCheckMark size="24" />
+            ) : (
+              'Add contact'
+            )}
           </button>
         </div>
       </Form>
